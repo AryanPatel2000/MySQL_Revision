@@ -1,0 +1,61 @@
+create table emp_dept (
+    name varchar(100),
+    id INT NOT NULL auto_increment,
+    PRIMARY KEY (id)
+);
+
+create table emp(
+    name varchar(50),
+     id INT NOT NULL auto_increment,
+     city varchar(25),
+     dept_id int,
+     primary key(id),
+     foreign key(dept_id)
+     references 
+     emp_dept(id)
+
+);
+
+INSERT INTO emp_dept VALUES ('IT','1'),
+('HR','2'),
+('Finance','3'),
+('Accounting','4'),
+('Housekeeping','5'),
+('Security','6'),
+('Support','7'),
+('Contract Staff','8'),
+('Sales','9'),
+('Management','10');
+
+
+INSERT INTO `emp` VALUES ('rahul', '1', 'bhavnagar','3'),
+('manish', '2', 'bhavnagar','10'),
+('ramesh', '3', 'surat','9'),
+('rahil', '4', 'baroda', '6'),
+('ronak', '5', 'surat','2'),
+('palak', '6', 'bhavnagar','8'),
+('kamal', '7', 'baroda','6'),
+('jk', '8', 'baroda','8'),
+('manoj', '9', 'bhavnagar','2'),
+('mali', '10', 'surat','9'),
+('mahi', '11', 'baroda', '1'),
+('virat', '12', 'bhavnagar','7'),
+('rohit', '13', 'surat','10'),
+('krish', '14', 'baroda','4'),
+('sharad', '15', 'bhavnagar','5'),
+('sharma', '16', 'surat','8');
+
+--inner join
+
+SELECT emp.id,emp.name as Employee_name, emp_dept.name as Department_name 
+FROM emp 
+INNER JOIN emp_dept
+ON emp.dept_id = emp_dept.id ;
+
+SELECT emp.id, emp.name as Employee_name, emp_dept.name as Department_name 
+FROM emp 
+INNER JOIN emp_dept
+ON emp.dept_id = emp_dept.id 
+where emp.name like 'r%';
+
+

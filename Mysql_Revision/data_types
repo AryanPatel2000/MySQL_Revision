@@ -1,0 +1,73 @@
+
+-- Example of Data Types
+
+create database mysql_revision;
+
+create table student(Admission_id varchar(10) primary key, 10th_per decimal(4,2) ,Class Tinyint(2), Roll_no Int, firstName varchar(50), lastName varchar(50), Age Tinyint, DOB date, Year_of_admission Year, stream ENUM('Science', 'Commerce', 'Arts'), set_any_number SET('one', 'two', 'three', 'four', 'five'));
+
+insert into student values('AB2101','70.62', 11, 1, 'Alok', 'Singh', 16, '2004-05-11', '2021', 'Science', 'one,five'), 
+                          ('AB2150','90.95', 11, 2, 'Manish', 'Pandey', 16, '2004-06-15', '2021', 'Commerce', 'five,three,one'),
+                          ('AB2185','90.52', 11, 3, 'Anil;', 'Deshpandey', 16, '2004-05-25', '2021', 'Arts', 'one,four'),
+                          ('AB2190','80.25', 11, 4, 'Manoj', 'Verma', 16, '2004-06-30', '2021', 'Arts', 'two'),
+                          ('AB2151','75.87', 11, 5, 'Krishnkant', 'Reddy', 16, '2004-05-12', '2021', 'Commerce', 'five,four,three,two'),
+                          ('AB2102','70.74', 11, 6, 'Kmal', 'Sharma', 16, '2004-07-19', '2021', 'Science', 'one,two,three,four,five');
+
+
+
+
+
+-- Mysql Query--
+
+-- select query
+select * from tbl_student;
+select firstName from tbl_student;
+select firstName,lastName,10th_per from tbl_student;
+
+--insert query
+insert into tbl_student values('AB2186','75.74', 11, 15, 'Klock', 'Mehta', 16, '2004-10-19', '2021', 'Arts', 'one,two,three');
+
+--Update query
+update tbl_student set firstName='Prit', set_any_number='five' where Roll_no=15;
+
+--delete query 
+delete from tbl_student where Admission_id='AB2186' ;
+
+--Trunct table query
+truncate table tbl_student;
+
+--Drop query
+drop table tbl_student;
+    --or
+--drop database database_name; 
+
+--alter query
+alter table student RENAME TO tbl_student;
+
+
+
+-- Mysql Clause--
+select * from tbl_student where stream = 'Commerce';
+
+-- Mysql Clause with AND and OR condition--
+select * from tbl_student where stream = 'Arts' AND Roll_no < 4;
+select * from tbl_student where stream = 'Arts' OR stream = 'Science';
+select * from tbl_student where( stream = 'Commerce' AND firstName = 'Manish') OR Roll_no < 5 ;
+
+-- Mysql distinct clause---
+select distinct  stream from tbl_student;
+select distinct firstName, lastName , Roll_no, stream from tbl_student;
+
+-- Mysql from clause
+select * from tbl_student where 10th_per >= 80 ;
+
+--Mysql order by clause
+select * from tbl_student order by firstName asc;
+select * from tbl_student order by firstName desc;
+select * from tbl_student where 10th_per >= 70 AND stream = 'Commerce' order by 10th_per  desc;
+
+--Mysql group by clause
+select stream, count(*)as No_of_student from tbl_student group by stream;
+
+
+--Mysql having clause
+select Roll_no, firstName, lastName, 10th_per from tbl_student group by firstName having 10th_per > 80;
