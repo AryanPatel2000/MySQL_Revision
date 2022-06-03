@@ -59,3 +59,26 @@ ON emp.dept_id = emp_dept.id
 where emp.name like 'r%';
 
 
+--left join
+select emp_dept.id, emp_dept.name as Department, emp.name as Employee_name
+from emp_dept
+left join emp ON
+emp_dept.id = emp.dept_id ;
+
+
+--right join
+select emp.dept_id, emp.name as Employee_name, emp_dept.id, emp_dept.name as Department
+from emp 
+right join emp_dept ON
+emp.dept_id = emp_dept.id ;
+
+--cross join
+select *
+from emp 
+cross join emp_dept ;
+
+--self join
+select e.id, e.name as Employee_name, e.dept_id
+from emp as e, emp as e1
+where e.dept_id = e1.dept_id 
+AND  e.id != e1.id;

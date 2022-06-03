@@ -1,0 +1,42 @@
+--Aggregate Functions 
+
+--1.count()
+select count(name)as `Total Employees` from emp; 
+select count(*) from emp where city = 'bhavnagar';
+select count(distinct city) from emp;
+select city, count(*) from emp group by city;
+select city, count(*) from emp group by city having count(*) > 3;
+
+--2.sum() db_name-> db1, table_name-> emp
+select sum(working_hour) as `Total of working_hour` from emp;
+select sum(working_hour) as `Total of working_hour` from emp where working_hour < 10;
+select  name, sum(working_hour) as `Total of working_hour` from emp group by name;
+select  name, sum(working_hour) as `Total of working_hour` from emp group by name having sum(working_hour) > 20;
+
+--3.avg()
+select avg(working_hour) as `Average working hours` from emp;
+select avg(working_hour) as `Average working hours` from emp where working_hour < 10;
+select name, avg(working_hour) as `Average working hours` from emp group by name;
+
+--min()
+select name, min(working_hour) as `Minimum working_hours` from emp group by name;
+select name, min(working_hour) as `Minimum working_hours` from emp where name = 'A' ;
+
+--max()
+select name, max(working_hour) as `Maximum working_hours` from emp group by name;
+select name, max(working_hour) as `Maximum working_hours` from emp where working_date = '2022-03-01' ;
+
+--GROUP_CONCAT() db_name-> mysql_revision, table_name-> emp
+select  city, GROUP_CONCAT(name) from emp group by city ;
+
+--first()
+select  * from emp limit 1 ;
+select  * from emp limit 2 ;
+
+--last()
+select  * from emp order by id desc limit 1 ;
+select  * from emp order by id desc limit 2 ;
+
+
+
+
